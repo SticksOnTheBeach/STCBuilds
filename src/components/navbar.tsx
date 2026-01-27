@@ -1,6 +1,7 @@
 import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
 
-import { EchapBTN } from "~/routes";
+import { ContactBTN } from "~/routes";
+
 
 
 export const Navbar = component$(() => {
@@ -37,7 +38,7 @@ export const Navbar = component$(() => {
                     <button onClick$={toggleDark} class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-800 dark:text-yellow-400 transition-all">
                         {isDark.value ? '☀️' : '🌙'}
                     </button>
-                    <EchapBTN />
+                    <ContactBTN />
                 </div>
             </div>
         </nav>

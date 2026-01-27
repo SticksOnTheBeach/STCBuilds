@@ -10,21 +10,21 @@ interface Etape {
 export const Timeline = component$(() => {
     const etapes: Etape[] = [
         {
-            date: "2024 - Présent",
+            date: "2025 - Présent",
             titre: "Développeur Fullstack Junior",
             lieu: "Freelance",
             description: "Création de sites ultra-rapides avec Qwik et Tailwind CSS pour des clients locaux."
         },
         {
-            date: "2023",
+            date: "2024-2025",
             titre: "Formation Web Intensive",
             lieu: "Autodidacte / BootCamp",
-            description: "Apprentissage approfondi de JavaScript, React et de l'écosystème moderne."
+            description: "Apprentissage approfondi de Typescript, Qwik et de l'écosystème moderne."
         },
         {
             date: "2022",
-            titre: "Premiers pas en Code",
-            lieu: "Lycée / Passion",
+            titre: "Premiers pas en code WEB",
+            lieu: "Lycée Général et Technologique de Jean Moulin",
             description: "Découverte du HTML et du CSS. Création de mes premiers designs statiques."
         }
     ];
