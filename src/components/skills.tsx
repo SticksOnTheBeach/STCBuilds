@@ -12,7 +12,7 @@ export const Skills = component$(() => {
 
     return (
         <section class="py-16 px-4 max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Mes Compétences</h2>
+            <h2 class="text-3xl font-bold mb-8 text-white">Mes Compétences</h2>
 
             <div class="flex flex-wrap justify-center gap-4">
                 {mesTechnos.map((tech) => (

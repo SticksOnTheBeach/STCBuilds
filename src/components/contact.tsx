@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 
 export const Contact = component$(() => {
     return (
-        <section id="contact" class="py-16 px-4 max-w-lg mx-auto">
+        <section id="contact" class="py-16 px-4 max-w-lg mx-auto text-white">
             <h2 class="text-3xl font-bold mb-8 text-center">Me contacter</h2>
 
             <form class="space-y-4 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
