@@ -7,10 +7,10 @@ import { Skills } from "../components/skills";
 import { Contact } from "../components/contact";
 import { Footer } from "../components/footer";
 import { Projects } from "../components/projects";
-
-
+import { Timeline } from "~/components/timeline";
+import { AnimatedTerminal } from "../components/animated-terminal";
 // 1. Définition du bouton
-export const MonBouton = component$(() => {
+export const ContactBTN = component$(() => {
     return (
         <a
             href="#contact"
@@ -63,28 +63,51 @@ export const Statistiques = component$(() => {
 
 // 2. Ta page qui utilise le bouton
 export default component$(() => {
-    return (
-        // On ajoute 'pt-20' (Padding Top) pour laisser de la place à la Navbar
-        <div class="min-h-screen bg-gray-50 pt-20">
+  return (
+    /* 1. Un seul parent avec 'relative' et 'overflow-hidden' pour contenir les lumières */
+    <div class="relative min-h-screen overflow-hidden bg-slate-900 pt-20 transition-colors duration-500">
 
-            <Navbar/>
+      {/* 2. Les lumières sont placées ICI, en début de div */}
+      <div class="pointer-events-none absolute inset-0 z-0 h-full w-full">
+        {/* Lumière Violette */}
+        <div class="animate-blob absolute top-0 -left-4 h-72 w-72 rounded-full bg-purple-500 opacity-70 mix-blend-multiply filter blur-[128px] dark:opacity-40"></div>
+        {/* Lumière Bleue */}
+        <div class="animate-blob animation-delay-2000 absolute top-0 -right-4 h-72 w-72 rounded-full bg-blue-500 opacity-70 mix-blend-multiply filter blur-[128px] dark:opacity-40"></div>
+        {/* Lumière Rose */}
+        <div class="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-500 opacity-70 mix-blend-multiply filter blur-[128px] dark:opacity-40"></div>
+      </div>
 
-            <main class="flex flex-col items-center justify-center mt-20">
-                <h1 class="text-5xl font-extrabold text-slate-900 mb-4">
-                    Salut, je m'appelle Maël 👋
-                </h1>
-                <p class="text-xl text-slate-500 mb-8">
-                    Développeur Fullstack React & Qwik
-                </p>
+      {/* 3. On ajoute 'relative z-10' sur le contenu pour qu'il soit AU-DESSUS des lumières */}
+      <div class="relative z-10">
+        <Navbar />
 
-                <MonBouton />
-            </main>
-            <Skills />
-            <Statistiques />
-            <Projects />
-            <Contact />
-            <Footer />
+        <main class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-12 px-6 py-12 lg:flex-row lg:py-24">
+          <div class="flex-1 text-center lg:text-left">
+            <h1 class="mb-4 text-5xl font-extrabold leading-tight text-white lg:text-7xl">
+              Salut, je m'appelle <span class="text-blue-600">Maël</span> 👋
+            </h1>
+            <p class="mx-auto mb-8 max-w-xl text-xl text-slate-400 lg:mx-0">
+              Développeur Fullstack React & Qwik
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 lg:justify-start">
+              <ContactBTN />
+            </div>
+          </div>
 
-        </div>
-    );
+          <div class="flex w-full flex-1 justify-center lg:justify-end">
+            <div class="w-full transform rounded-2xl border border-slate-700/50 bg-slate-900/90 p-6 shadow-[0_20px_50px_rgba(8,112,184,0.7)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2">
+              <AnimatedTerminal />
+            </div>
+          </div>
+        </main>
+
+        <Skills />
+        <Statistiques />
+        <Projects />
+        <Timeline />
+        <Contact />
+        <Footer />
+      </div>
+    </div>
+  );
 });
