@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$, $, type PropFunction } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$, type PropFunction } from "@builder.io/qwik";
 
 interface IntroSequenceProps {
   onSequenceEnd$: PropFunction<() => void>;
@@ -11,7 +11,7 @@ export const IntroSequence = component$<IntroSequenceProps>((props) => {
   const showLigne3 = useSignal(false);
   const startSweep = useSignal(false);
 
-  useVisibleTask$(({ cleanup }) => {
+  useVisibleTask$(() => {
     const runTimeline = async () => {
       // Délai initial avant de commencer
       await new Promise(r => setTimeout(r, 500));

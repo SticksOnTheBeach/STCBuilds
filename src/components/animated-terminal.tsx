@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 
 export const AnimatedTerminal = component$(() => {
   const textToType = [

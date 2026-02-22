@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$, $, type PropFunction } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$, type PropFunction } from "@builder.io/qwik";
 
 interface PreloaderProps {
   onAnimationEnd$: PropFunction<() => void>;

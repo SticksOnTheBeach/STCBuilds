@@ -1,5 +1,5 @@
-import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
-
+import { component$, useSignal, useVisibleTask$, $} from "@builder.io/qwik";
+import type { DocumentHead } from "@builder.io/qwik-city";
 
 // 1. On importe nos composants depuis leurs fichiers respectifs
 import { Navbar } from "../components/navbar";
@@ -169,3 +169,21 @@ export default component$(() => {
     </>
   );
 });
+
+// --- CONFIGURATION SEO POUR GOOGLE ---
+export const head: DocumentHead = {
+  // C'est le texte qui apparaîtra dans l'onglet du navigateur et en bleu sur Google
+  title: "Maël RETAULT | Développeur Web Front-End (Qwik & React)",
+  meta: [
+    {
+      // C'est le petit texte descriptif qui apparaît sous le lien sur Google
+      name: "description",
+      content: "Portfolio de Maël Retault, développeur web freelance. Création de sites internet ultra-rapides, optimisés SEO et sécurisés avec Qwik et TailwindCSS.",
+    },
+    {
+      // Optionnel mais recommandé : empêche les robots de rater la page
+      name: "robots",
+      content: "index, follow",
+    }
+  ],
+};

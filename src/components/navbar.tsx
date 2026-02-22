@@ -7,7 +7,6 @@ import { ContactBTN } from "~/routes";
 export const Navbar = component$(() => {
     const isDark = useSignal(false);
 
-    // Ce code s'exécute au chargement pour vérifier les préférences de l'utilisateur
     useVisibleTask$(() => {
         const theme = localStorage.getItem('theme');
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
