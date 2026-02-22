@@ -2,7 +2,6 @@ import { component$ } from "@builder.io/qwik";
 
 export const Skills = component$(() => {
     const mesTechnos = [
-        // On ajoute "hover: ..." dans une nouvelle propriété 'survol'
         { nom: "React JS", couleur: "bg-blue-100 text-blue-700", survol: "hover:bg-blue-600 hover:text-white" },
         { nom: "Qwik", couleur: "bg-purple-100 text-purple-700", survol: "hover:bg-purple-600 hover:text-white" },
         { nom: "Tailwind CSS", couleur: "bg-cyan-100 text-cyan-700", survol: "hover:bg-cyan-600 hover:text-white" },

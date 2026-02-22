@@ -1,7 +1,6 @@
 import { component$, useSignal, useVisibleTask$, $} from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
-// 1. On importe nos composants depuis leurs fichiers respectifs
 import { Navbar } from "../components/navbar";
 import { Skills } from "../components/skills";
 import { Contact } from "../components/contact";
@@ -12,7 +11,6 @@ import { AnimatedTerminal } from "../components/animated-terminal";
 import { Preloader } from "../components/Preloader"; // Vérifie le chemin
 import { IntroSequence } from "~/components/intro-sequence";
 
-// 1. Définition du bouton
 export const ContactBTN = component$(() => {
     return (
         <a
@@ -38,30 +36,22 @@ export const EchapBTN = component$(() => {
 export const Statistiques = component$(() => {
   const projets = useSignal(0);
   const clients = useSignal(0);
-  const direction = useSignal(1); // 1 pour monter, -1 pour descendre
-  const isPaused = useSignal(false); // Signal pour gérer la pause
+  const direction = useSignal(1);
+  const isPaused = useSignal(false);
 
   useVisibleTask$(() => {
     const interval = setInterval(() => {
-      // Si on est en pause, on ne fait rien du tout
       if (isPaused.value) return;
-
-      // On ajuste les valeurs
       projets.value += direction.value;
       clients.value += direction.value;
 
       // Vérification des paliers
       if (projets.value >= 15 || projets.value <= 0) {
-        // 1. On active la pause
         isPaused.value = true;
-
-        // 2. On change la direction pour le futur
         direction.value = direction.value === 1 ? -1 : 1;
-
-        // 3. On programme la fin de la pause dans 2 secondes
         setTimeout(() => {
           isPaused.value = false;
-        }, 2000); // 2000ms = 2 secondes d'arrêt
+        }, 2000);
       }
     }, 100);
 
@@ -94,32 +84,25 @@ export const Statistiques = component$(() => {
 
 
 export default component$(() => {
-  // 1. SIGNAL : Est-ce que la séquence de texte "Be more..." est finie ?
   const introTextComplete = useSignal(false);
-
-  // 2. SIGNAL : Est-ce que l'animation du Terminal (Preloader) est finie ?
   const terminalComplete = useSignal(false);
 
   return (
     <>
       {/* --- ÉTAPE 1 : SEQUENCE D'INTRO TEXTE --- */}
-      {/* S'affiche uniquement au tout début */}
       {!introTextComplete.value && (
         <IntroSequence onSequenceEnd$={$(() => (introTextComplete.value = true))} />
       )}
 
       {/* --- ÉTAPE 2 : PRELOADER (TERMINAL) --- */}
-      {/* S'affiche une fois le texte fini, mais tant que le terminal n'a pas fini */}
       {introTextComplete.value && !terminalComplete.value && (
         <Preloader onAnimationEnd$={$(() => (terminalComplete.value = true))} />
       )}
 
       {/* --- ÉTAPE 3 : LE SITE PRINCIPAL --- */}
-      {/* Toujours présent dans le DOM mais caché par opacité au début */}
       <div
         class={[
           "relative min-h-screen overflow-hidden bg-slate-900 pt-20 transition-opacity duration-1000",
-          // Si le terminal est fini -> Opacité 100%, sinon Opacité 0 et pas de clic possible
           terminalComplete.value ? "opacity-100" : "opacity-0 pointer-events-none h-0 lg:h-auto"
         ]}
       >
@@ -145,12 +128,11 @@ export default component$(() => {
                 Développeur Fullstack React & Qwik
               </p>
               <div class="flex flex-wrap justify-center gap-4 lg:justify-start">
-                {/* Si ContactBTN n'est pas importé, assure-toi qu'il est défini plus haut ou importé */}
                 <ContactBTN />
               </div>
             </div>
 
-            {/* COLONNE DROITE : Terminal animé (celui qui reste sur le site) */}
+            {/* COLONNE DROITE : Terminal animé */}
             <div class="flex w-full flex-1 justify-center lg:justify-end">
               <div class="w-full transform rounded-2xl border border-slate-700/50 bg-slate-900/90 p-6 shadow-[0_20px_50px_rgba(8,112,184,0.7)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2">
                 <AnimatedTerminal />
@@ -172,16 +154,13 @@ export default component$(() => {
 
 // --- CONFIGURATION SEO POUR GOOGLE ---
 export const head: DocumentHead = {
-  // C'est le texte qui apparaîtra dans l'onglet du navigateur et en bleu sur Google
   title: "Maël RETAULT | Développeur Web Front-End (Qwik & React)",
   meta: [
     {
-      // C'est le petit texte descriptif qui apparaît sous le lien sur Google
       name: "description",
       content: "Portfolio de Maël Retault, développeur web freelance. Création de sites internet ultra-rapides, optimisés SEO et sécurisés avec Qwik et TailwindCSS.",
     },
     {
-      // Optionnel mais recommandé : empêche les robots de rater la page
       name: "robots",
       content: "index, follow",
     }

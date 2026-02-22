@@ -28,10 +28,7 @@ export const IntroSequence = component$<IntroSequenceProps>((props) => {
       // Pause dramatique pour lire le tout (2s)
       await new Promise(r => setTimeout(r, 2000));
 
-      // Lancer le rideau de transition
       startSweep.value = true;
-
-      // Attendre la fin de l'animation du rideau (1s dans le CSS) avant de signaler la fin
       await new Promise(r => setTimeout(r, 1000));
       props.onSequenceEnd$();
     };
@@ -40,7 +37,6 @@ export const IntroSequence = component$<IntroSequenceProps>((props) => {
   });
 
   return (
-    // Conteneur principal (fond noir)
     <div class="fixed inset-0 z-[10000] bg-[#111] flex items-center justify-center overflow-hidden font-sans">
 
       {/* Conteneur du texte centré */}
@@ -49,14 +45,14 @@ export const IntroSequence = component$<IntroSequenceProps>((props) => {
         {/* Ligne 1 */}
         {showLigne1.value && (
           <h2 class="text-2xl md:text-3xl text-gray-400 font-medium animate-text-appear">
-            Be more
+            Be a
           </h2>
         )}
 
         {/* Ligne 2 */}
         {showLigne2.value && (
           <h2 class="text-2xl md:text-3xl text-gray-400 font-medium animate-text-appear">
-            accurate using
+            KING using
           </h2>
         )}
 
@@ -69,7 +65,6 @@ export const IntroSequence = component$<IntroSequenceProps>((props) => {
       </div>
 
       {/* LE RIDEAU DE TRANSITION */}
-      {/* C'est une div noire positionnée en bas, qui remonte pour tout couvrir */}
       <div
         class={[
           "absolute inset-0 bg-slate-950 z-20 transform translate-y-full",

@@ -11,13 +11,11 @@ export const AnimatedTerminal = component$(() => {
   const charIndex = useSignal(0);
 
   useVisibleTask$(({ track }) => {
-    // On surveille les index pour déclencher la suite
     track(() => charIndex.value);
     track(() => lineIndex.value);
 
     const currentLine = textToType[lineIndex.value];
 
-    // CAS 1 : On écrit la ligne actuelle
     if (charIndex.value < currentLine.length) {
       const timeout = setTimeout(() => {
         displayedText.value += currentLine.charAt(charIndex.value);
@@ -26,7 +24,6 @@ export const AnimatedTerminal = component$(() => {
       return () => clearTimeout(timeout);
     }
 
-    // CAS 2 : La ligne est finie, on passe à la suivante
     else if (lineIndex.value < textToType.length - 1) {
       const timeout = setTimeout(() => {
         displayedText.value += "\n";
@@ -36,13 +33,12 @@ export const AnimatedTerminal = component$(() => {
       return () => clearTimeout(timeout);
     }
 
-    // CAS 3 : TOUT est fini -> ON RECOMANCE (La boucle !)
     else {
       const timeout = setTimeout(() => {
-        displayedText.value = ""; // On efface tout
-        lineIndex.value = 0;      // Retour première ligne
-        charIndex.value = 0;     // Retour premier caractère
-      }, 1500); // On attend 3 secondes avant de relancer
+        displayedText.value = "";
+        lineIndex.value = 0;
+        charIndex.value = 0;
+      }, 1500);
       return () => clearTimeout(timeout);
     }
   });

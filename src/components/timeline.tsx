@@ -37,10 +37,7 @@ export const Timeline = component$(() => {
                 <div class="relative border-l-2 border-blue-500 ml-4 md:mx-auto md:w-fit">
                     {etapes.map((item, index) => (
                         <div key={index} class="mb-10 ml-6 group">
-                            {/* Le petit rond sur la ligne */}
                             <div class="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full border-2 border-blue-500 bg-white dark:bg-slate-900 group-hover:bg-blue-500 transition-colors"></div>
-
-                            {/* Le contenu */}
                             <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-shadow">
                                 <span class="text-sm font-bold text-blue-600 uppercase tracking-wide">{item.date}</span>
                                 <h3 class="text-xl font-bold mt-1 dark:text-white">{item.titre}</h3>
